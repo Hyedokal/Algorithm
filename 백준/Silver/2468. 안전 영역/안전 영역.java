@@ -53,8 +53,8 @@ public class Main {
         System.out.println(answer); //출력
     }
     static void DFS(int row, int col){
-        if(map[row][col] > height) { //아직 방문 안 한 안 잠긴 곳을 발견한 경우
-            if(!visited[row][col]){
+        if(map[row][col] > height) { //안 잠긴 곳 중에
+            if(!visited[row][col]){ //아직 방문 안 한 곳을 발견할 경우
                 count++;                  // 구역 개수를 추가하고
                 visited[row][col] = true; // 방문여부를 true로 바꾼다.
             }
