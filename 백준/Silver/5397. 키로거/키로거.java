@@ -1,38 +1,37 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine());
-        for(int t=0; t<T; t++){
 
-            Stack<Character> left = new Stack<>();
-            Stack<Character> right = new Stack<>();
-            char[] chars = br.readLine().toCharArray();
-            for(int i=0; i<chars.length; i++){
-                switch (chars[i]){
-                    case '<':
-                        if(!left.isEmpty()) right.push(left.pop());
-                        break;
-                    case '>':
-                        if(!right.isEmpty()) left.push(right.pop());
-                        break;
-                    case '-':
-                        if(!left.isEmpty()) left.pop();
-                        break;
-                    default:
-                        left.push(chars[i]);
+        int T = Integer.parseInt(br.readLine());
+        for (int t = 0; t < T; t++) {
+            StringBuilder st = new StringBuilder();
+            char[] keylogs = br.readLine().toCharArray();
+            Stack<Character> stack = new Stack<>();
+            Stack<Character> tempStack = new Stack<>();
+
+            for (char log : keylogs) {
+                if (log == '<') {
+                    if(!stack.isEmpty()) tempStack.push(stack.pop());
+                } else if (log == '>') {
+                    if(!tempStack.isEmpty()) stack.push(tempStack.pop());
+                } else if (log == '-') {
+                    if (!stack.isEmpty()) stack.pop();
+                } else {
+                    stack.push(log);
                 }
             }
-            StringBuilder sb = new StringBuilder();
-            for(char ch : left) sb.append(ch);
-            while(!right.isEmpty()) sb.append(right.pop());
-            System.out.println(sb);
-        }
 
-    }
-}
+            for (char c : stack) {
+                st.append(c);
+            }
+            while(!tempStack.isEmpty()){
+                st.append(tempStack.pop());
+            }
+            System.out.println(st);
+        }
+    }}
