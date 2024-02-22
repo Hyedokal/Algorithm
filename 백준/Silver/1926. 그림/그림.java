@@ -32,7 +32,7 @@ public class Main {
                 size = 1;
                 if(!visited[r][c] && paint[r][c]==1){ //아직 방문 안한 1이 있으면..
                     count++; //그림 개수 증가시킨다.
-                    DFS(r, c, 1); //DFS 알고리즘 수행
+                    DFS(r, c); //DFS 알고리즘 수행
                     if(size > maxArea) maxArea = size;
                 }
             }
@@ -40,7 +40,7 @@ public class Main {
         System.out.println(count);
         System.out.print(maxArea);
     }
-    static void DFS(int r, int c, int tmpArea){
+    static void DFS(int r, int c){
         //방문처리
         visited[r][c] = true;
         for(int k=0; k<4; k++){
@@ -51,12 +51,10 @@ public class Main {
                 //만약 방문하지 않은 1을 찾으면..
                 if(!visited[nR][nC] && paint[nR][nC]==1){
                     //재귀 수행.
-                    DFS(nR, nC, tmpArea+1);
+                    DFS(nR, nC);
                     size++; //재귀 횟수 카운트
                 }
             }
         }
-        //가장 넓은 그림의 넓이 저장
-        if(tmpArea > maxArea) maxArea = tmpArea;
     }
 }
