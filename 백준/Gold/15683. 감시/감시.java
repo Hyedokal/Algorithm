@@ -33,22 +33,18 @@ public class Main {
             }
         }
         liSize = tvList.size();
-//                            System.out.println(liSize);
         recur(0);
         System.out.println(answer);
     }
 
     static void recur(int tvIdx){
         if(tvIdx==liSize) {
-//                            System.out.println("tvIdx: "+ tvIdx);
             int temp = 0;
             //0개수를 세는 작업 후 answer 업데이트..
             for(int r=0; r<N; r++){
                 for(int c=0; c<M; c++){
                     if(map[r][c] == 0) temp++;
-//                                       System.out.print(map[r][c]);
                 }
-//                                  System.out.println();
             }
             if(answer > temp) answer =temp;
             return;
@@ -56,7 +52,6 @@ public class Main {
 
         //recursive case
         CCTV tv = tvList.get(tvIdx);
-//                            System.out.println("tvidx: "+ tvIdx);
         switch (tv.num){
             case 1:
                 for(int i=0; i<4; i++){
