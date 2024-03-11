@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] s = br.readLine().split(" ");
-        N = Integer.parseInt(s[0]); // 노트북 세로길이
-        M = Integer.parseInt(s[1]); // 노트북 가로길이
-        K = Integer.parseInt(s[2]); // 스티커 개수
+        N = Integer.parseInt(s[0]);
+        M = Integer.parseInt(s[1]);
+        K = Integer.parseInt(s[2]);
         map = new int[N][M];
         answer = 0;
         for(int k=0; k<K; k++){
@@ -42,10 +42,9 @@ public class Main {
             for(int r=0; r<N; r++){ //map 배열의 반복문
                 mapLoop:
                 for(int c=0; c<M; c++){
-                    stickerLoop: //스티커를 붙일 수 있는 지 확인한다.
+                    //스티커를 붙일 수 있는 지 확인한다.
                     for (int x = 0; x < newSticker.length; x++) {
                         for (int y = 0; y < newSticker[0].length; y++) {
-//                            System.out.println("r: " + r + " c: " + c + " x: " + x + " y: " + y);
                             if (newSticker[x][y] == 0) {
                                 //마지막 칸까지 왔는데, 얘가 0이면 붙일수 있다는 의미
                                 if(x == (newSticker.length - 1) && y == (newSticker[0].length - 1)){
@@ -56,13 +55,8 @@ public class Main {
                             //해당 칸 값이 1일 때, 유효성 확인
                             if (0 <= (r + x) && (r + x) < N && 0 <= (c + y) && (c + y) < M) {
                                 //못 붙이면 한칸 더 가봐
-                                if (map[r + x][c + y] == 1) {
-//                                    System.out.println("이미 붙어있음");
-                                    continue mapLoop;
-                                }
-                                if(x == (newSticker.length - 1) && y == (newSticker[0].length - 1)){
-                                    possible = true;
-                                }
+                                if (map[r + x][c + y] == 1) continue mapLoop;
+                                if(x == (newSticker.length - 1) && y == (newSticker[0].length - 1)) possible = true;
                             } else continue mapLoop;
 
                         }
@@ -77,8 +71,6 @@ public class Main {
                                 }
                             }
                         }
-//                        for(int l=0; l<N; l++) System.out.println(Arrays.toString(map[l]));
-//                        System.out.println("==================");
                         break rotateLoop;
                     }
                 }
